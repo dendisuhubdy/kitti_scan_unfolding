@@ -64,7 +64,7 @@ def projection(
     Returns:
         Dict(
             points=np.array(shape=(H, W, 3), dtype=np.float),  # projected point cloud
-            depth=np.array(shape=(N,), dtype=np.float)  # projected depth
+            depth=np.array(shape=(H, W,), dtype=np.float)  # projected depth
             channels=List(*),  # list of projected additional channels
             indices=np.array(shape=(N, 2), dtype=np.int)  # image indices from the list
             inverse=np.array(shape=(H, W), dtype=np.int)  # list indices from the image
