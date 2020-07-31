@@ -41,17 +41,21 @@ def projection(
     from the original KITTI Raw Dataset.
 
     The resulting projected image (H, W) contains missing values, these positions
-    are filled with `-1`. If you set `return_inverse` to True, you may receive
-    a mask for the valid measurements of the image with `valid_image = inverse >= 0`.
+    are filled with `-1`. A mask for the missing measurements over the array
+    can be obtained with `valid_mask = depth >= 0`.
     This function has less information loss than techniques which compute the
     azimuth and elevation angle and sort the points accordingly into the image.
-    Therefore, most entries in `valid_image` shall be True, except for locations
+    Therefore, most entries in `valid_mask` shall be True, except for locations
     that hit the ego vehicle or are pointed towards the sky.
 
     The measurements are ordered in decreasing depth before being assigned to image
     locations. In case more than one value is scattered to this position, the one
-    closest to the ego vehicle is selected. To know which points actually made it into
-    the projection, set `return_active` to True.
+    closest to the ego vehicle is selected. The return channel `active` stores which
+    which points from the list actually made it into the projection.
+
+    The function returns a dictionary with several channels. These channels allow
+    correct back-tracking from the projected image to the original point list
+    (`inverse`) and vice versa (`indices` and `active`).
 
     Arguments:
         points : np.array(shape=(N, 3), dtype=np.float)
