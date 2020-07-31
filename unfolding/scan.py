@@ -28,11 +28,7 @@ def get_kitti_rows(points: np.array, threshold: float = -0.005) -> np.array:
     return np.int32(np.cumsum(rows, axis=-1))
 
 
-def projection(
-    points: np.array,
-    *channels,
-    image_size: tuple = (64, 2000),
-):
+def projection(points: np.array, *channels, image_size: tuple = (64, 2000)):
     """ Scan unfolding of raw KITTI point cloud of shape [N, (x,y,z)]
 
     This functions performs a cylindrical projection of a 3D point cloud given in

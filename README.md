@@ -1,4 +1,4 @@
-# KITTI Scan Unfolding
+# KITTI Scan Unfolding [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Python implementation of KITTI scan unfolding.
 
